@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { getCurrentUser } from "@/lib/auth";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -8,6 +9,7 @@ const supabase = createClient(
 
 export async function POST(req: Request) {
   try {
+    const currentUser = getCurrentUser();
     const { problem_id, language, source_code } = await req.json();
 
     const { data: problem } = await supabase
@@ -24,6 +26,7 @@ export async function POST(req: Request) {
       .from("submissions")
       .insert({
         problem_id,
+        user_id: currentUser?.id || null,
         language,
         source_code,
         status: "G",
