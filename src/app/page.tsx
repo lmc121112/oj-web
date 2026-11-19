@@ -36,7 +36,7 @@ export default function HomePage() {
   // Judge States
   const [language, setLanguage] = useState("cpp");
   const [code, setCode] = useState(
-    `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long a, b;\n    if (cin >> a >> b) cout << a + b;\n    return 0;\n}`
+    `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}`
   );
   const [submitting, setSubmitting] = useState(false);
   const [currentSub, setCurrentSub] = useState<any>(null);
